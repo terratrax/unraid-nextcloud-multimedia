@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Nextcloud-multimedia</Name>
+  <Repository>terratrax/nextcloud-multimedia:latest</Repository>
+  <Registry>https://hub.docker.com/repository/docker/terratrax/nextcloud-multimedia</Registry>
+  <Network>ultimus-home</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/136213-support-terratrax-nextcloud-multimedia/</Support>
+  <Project>https://nextcloud.com/</Project>
+  <Overview>This is the latest Nextcloud-apache image with additional packages and plugins installed to support videos and facial recognition:&#xD;
+ - ffmpeg (install from apt repository)&#xD;
+ - pdlib (built from source)&#xD;
+ - bzip (built from source)&#xD;
+&#xD;
+INSTALLATION&#xD;
+&#xD;
+At first install a MariaDB or PostgreSQL container. Changing their paths to /mnt/cache/appdata/... (instead of /mnt/user/appdata/...) will enormously boost Nextcloud's loading times!&#xD;
+&#xD;
+After that use the database's IP:Port and credentials to install Nextcloud.&#xD;
+&#xD;
+Optionally installing the Swag or Nginx Proxy Manager container allows you to access Nextcloud from outside of your home through HTTPS (do not forget forwarding the Ports 80 and 443 in your router).  Note: The proxy itself needs to communicate through HTTP (not HTTPS) with Nextcloud.&#xD;
+&#xD;
+INSTALL AND CONFIGURE NEXTCLOUD MEMORIES&#xD;
+Install Memories from within the Nextcloud application and provide it the base folder for your media when it asks.  Launch a console into the container and run the following commands individually:&#xD;
+php occ memories:video-setup (follow the prompts)&#xD;
+php occ memories:index&#xD;
+&#xD;
+INSTALL AND CONFIGURE FACIAL RECOGNITION&#xD;
+Install the 'face recognition' app from within the Nextcloud application.&#xD;
+Launch a terminal for the container and run the following command to initialize it (customize to suit):&#xD;
+php occ face:setup --memory 1024M --model 1&#xD;
+&#xD;
+From within the application, visit settings the face recognition settings and select a temporary file size.&#xD;
+&#xD;
+To kick off scanning for faces:&#xD;
+php occ face:background_job&#xD;
+&#xD;
+UPDATES&#xD;
+&#xD;
+Nextcloud often needs manual interaction to fix database indexes. In those cases execute the following through the Unraid Terminal to fix them:&#xD;
+docker exec --user 99 Nextcloud php occ db:add-missing-indices&#xD;
+&#xD;
+Sometimes this command is needed:&#xD;
+docker exec --user 99 Nextcloud php occ db:convert-filecache-bigint --no-interaction</Overview>
+  <Category>Cloud: MediaServer:Video MediaServer:Photos</Category>
+  <WebUI>http://[IP]:[PORT:80]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/maschhoff/docker/master/unraid%20xml/my-nextcloud.xml</TemplateURL>
+  <Icon>https://s3.ultimus.cloud/ultimus-static/terratrax/nextcloud_mm.png</Icon>
+  <ExtraParams>--user 99:100</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1678485532</DateInstalled>
+  <DonateText>Please buy me a Pizza</DonateText>
+  <DonateLink>https://www.buymeacoffee.com/maschhoff</DonateLink>
+  <Requires/>
+  <Config Name="HTML/PHP Files" Target="/var/www/html" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextcloud/html</Config>
+  <Config Name="Apps" Target="/var/www/html/custom_apps" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextcloud/apps</Config>
+  <Config Name="Config Files" Target="/var/www/html/config" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextcloud/config</Config>
+  <Config Name="webui" Target="80" Default="" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">7888</Config>
+  <Config Name="PHP_MEMORY_LIMIT" Target="PHP_MEMORY_LIMIT" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">2048M</Config>
+</Container>
