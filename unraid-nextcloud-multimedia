@@ -46,14 +46,12 @@ Sometimes this command is needed:&#xD;
 docker exec --user 99 Nextcloud php occ db:convert-filecache-bigint --no-interaction</Overview>
   <Category>Cloud: MediaServer:Video MediaServer:Photos</Category>
   <WebUI>http://[IP]:[PORT:80]</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/maschhoff/docker/master/unraid%20xml/my-nextcloud.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/terratrax/unraid-templates/main/unraid-nextcloud-multimedia</TemplateURL>
   <Icon>https://s3.ultimus.cloud/ultimus-static/terratrax/nextcloud_mm.png</Icon>
   <ExtraParams>--user 99:100</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1678485532</DateInstalled>
-  <DonateText>Please buy me a Pizza</DonateText>
-  <DonateLink>https://www.buymeacoffee.com/maschhoff</DonateLink>
   <Requires/>
   <Config Name="HTML/PHP Files" Target="/var/www/html" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextcloud/html</Config>
   <Config Name="Apps" Target="/var/www/html/custom_apps" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextcloud/apps</Config>
