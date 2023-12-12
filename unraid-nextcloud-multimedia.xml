@@ -16,11 +16,11 @@
 &#xD;
 INSTALLATION&#xD;
 &#xD;
-At first install a MariaDB or PostgreSQL container. Changing their paths to /mnt/cache/appdata/... (instead of /mnt/user/appdata/...) will enormously boost Nextcloud's loading times!&#xD;
+First install a MariaDB or PostgreSQL container. Changing their paths to /mnt/cache/appdata/... (instead of /mnt/user/appdata/...) will enormously boost Nextcloud's loading times!&#xD;
 &#xD;
 After that use the database's IP:Port and credentials to install Nextcloud.&#xD;
 &#xD;
-Optionally installing the Swag or Nginx Proxy Manager container allows you to access Nextcloud from outside of your home through HTTPS (do not forget forwarding the Ports 80 and 443 in your router).  Note: The proxy itself needs to communicate through HTTP (not HTTPS) with Nextcloud.&#xD;
+Optionally install the Swag or Nginx Proxy Manager container allows you to access Nextcloud from outside of your home through HTTPS (do not forget forwarding the Ports 80 and 443 in your router).  Note: The proxy itself needs to communicate through HTTP (not HTTPS) with Nextcloud.&#xD;
 &#xD;
 INSTALL AND CONFIGURE NEXTCLOUD MEMORIES&#xD;
 Install Memories from within the Nextcloud application and provide it the base folder for your media when it asks.  Launch a console into the container and run the following commands individually:&#xD;
